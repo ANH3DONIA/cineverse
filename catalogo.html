@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>Catálogo - CineVerse</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar" aria-label="Navegación principal">
+    <div class="nav-container">
+      <a href="/" class="nav-logo" aria-label="CineVerse - Inicio">
+        <span class="logo-text">CineVerse</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="/" class="nav-link">Inicio</a></li>
+        <li><a href="/catalogo.html" class="nav-link active" aria-current="page">Catálogo</a></li>
+        <li><a href="/registro.html" class="nav-link nav-link--cta">Registrarse</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="catalog-header">
+    <div class="container">
+      <h1>Catálogo de Películas</h1>
+      <form class="search-bar" id="search-form" role="search" action="/api/movies/search" method="GET">
+        <label for="search-input" class="visually-hidden">Buscar películas</label>
+        <input
+          type="search"
+          id="search-input"
+          name="q"
+          placeholder="Buscar películas..."
+          autocomplete="off"
+          aria-label="Buscar películas por título"
+        >
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </form>
+      <div class="filter-tabs" role="tablist" aria-label="Filtrar por categoría">
+        <button role="tab" class="filter-tab active" data-category="popular" aria-selected="true">Popular</button>
+        <button role="tab" class="filter-tab" data-category="top_rated" aria-selected="false">Mejor Valoradas</button>
+        <button role="tab" class="filter-tab" data-category="upcoming" aria-selected="false">Próximos Estrenos</button>
+        <button role="tab" class="filter-tab" data-category="now_playing" aria-selected="false">En Cartelera</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="movie-grid movie-grid--catalog" id="catalog-movies" aria-live="polite">
+        <div class="loading-skeleton" aria-label="Cargando películas...">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+      </div>
+
+      <nav class="pagination" aria-label="Paginación del catálogo" id="pagination">
+      </nav>
+    </div>
+  </main>
+
+  <dialog id="movie-modal" class="movie-modal" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Cerrar detalle">&times;</button>
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-body">
+        <img id="modal-poster" class="modal-poster" src="" alt="" loading="lazy">
+        <div class="modal-info">
+          <h2 id="modal-title" class="modal-title"></h2>
+          <div class="modal-meta">
+            <span class="modal-rating" id="modal-rating"></span>
+            <span class="modal-date" id="modal-date"></span>
+            <span class="modal-lang" id="modal-lang"></span>
+          </div>
+          <p class="modal-overview" id="modal-overview"></p>
+          <div class="modal-extra">
+            <p><strong>Popularidad:</strong> <span id="modal-popularity"></span></p>
+            <p><strong>Votos:</strong> <span id="modal-votes"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container">
+      <p>CineVerse - Proyecto Unidad 3 | Datos proporcionados por <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">TMDB</a></p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/catalog.js"></script>
+</body>
+</html>
